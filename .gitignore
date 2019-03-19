@@ -1,4 +1,6 @@
 HELP.md
+
+# the double asterisks matches all directories anywhere in the repository
 **/target/
 !.mvn/wrapper/maven-wrapper.jar
 
