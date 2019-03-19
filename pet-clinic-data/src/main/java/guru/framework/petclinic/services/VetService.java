@@ -5,7 +5,7 @@ import java.util.Set;
 import guru.framework.petclinic.model.Vet;
 
 public interface VetService {
-	Vet findById(Long id);
+	Vet findById(Integer id);
 	Set<Vet> findAll();
 	Vet save(Vet vet);
 }
