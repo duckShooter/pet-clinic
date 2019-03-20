@@ -4,9 +4,6 @@ import java.util.Set;
 
 import guru.framework.petclinic.model.Owner;
 
-public interface OwnerService {	
-	Owner findById(Integer id);
-	Set<Owner> findAll();
+public interface OwnerService extends CrudService<Owner, Integer> {	
 	Set<Owner> findByLastName(String lastName);
-	Owner save(Owner owner);
 }

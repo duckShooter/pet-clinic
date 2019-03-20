@@ -1,11 +1,7 @@
 package guru.framework.petclinic.services;
 
-import java.util.Set;
-
 import guru.framework.petclinic.model.Vet;
 
-public interface VetService {
-	Vet findById(Integer id);
-	Set<Vet> findAll();
-	Vet save(Vet vet);
+public interface VetService extends CrudService<Vet, Integer> {
+
 }
