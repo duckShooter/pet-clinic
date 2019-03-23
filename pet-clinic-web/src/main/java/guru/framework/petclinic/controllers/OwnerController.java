@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/vets") //Main sub-directory, any request mapping on method-level will be prefixed by that.
-public class VetController {
+@RequestMapping("/owners") //Main sub-directory, any request mapping on method-level will be prefixed by that.
+public class OwnerController {
 	
 	@RequestMapping(value={"", "/", "/index", "/index.html"}, method=RequestMethod.GET)
-	public String listVets() {
-		return "vets/index";
+	public String listOwners() {
+		return "owners/index";
 	}
 }
