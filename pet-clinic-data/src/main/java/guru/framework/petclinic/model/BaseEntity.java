@@ -2,7 +2,7 @@ package guru.framework.petclinic.model;
 
 import java.io.Serializable;
 
-public class BaseEntity implements Serializable{
+public class BaseEntity implements Serializable {
 	Integer id;
 
 	public Integer getId() {
