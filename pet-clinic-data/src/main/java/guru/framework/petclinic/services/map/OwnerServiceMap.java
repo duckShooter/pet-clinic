@@ -2,9 +2,12 @@ package guru.framework.petclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import guru.framework.petclinic.model.Owner;
 import guru.framework.petclinic.services.OwnerService;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Integer> implements OwnerService {
 	
 	/*We must add the 'public' modifier, because we can't reduce the visibility of the inherited methods
