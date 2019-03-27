@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en-us" xmlns:th="http://www.thymeleaf.org">
+
+<!-- /* This Comment is only seen by Thymeleaf and will be removed when the template is parsed */ -->
+
+<!-- /*
+	- {th:replace} attribute is used to replace its host tag with the specified fragment.
+	- ~{template :: selector} is a fragment expression
+		- Fragment expression wrappers ~{} are optional to use with {th:insert} and {th:replace} 
+		- The template name is the html containing the fragments 
+	  	- The selector could be XPath, CSS selector or a fragment name that specifies the fragment inside the template.
+	  When the syntax is reduced to ~{::selector} this references the current template.
+	
+	---
+	References:
+	https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#difference-between-thinsert-and-threplace-and-thinclude
+	https://stackoverflow.com/questions/42171629/thymeleaf-fragment-expression
+*/ -->
+<html lang="en-us" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Spring Pet Clinic</title>
+	<meta name="description" content="Section 7">
+	<title>Recipe Home</title>
 </head>
 <body>
-	<h1 th:text="'Coming soon'">Coming Soon</h1>
+	<!-- */
+		- #{message} is a message expression, they're mainly used for internationalization (i18n)
+		- the values for the keys in the expression are obtained from message property files
+		  (i.e. message.properties, message-ar.properties, message-de.properties, ... etc)
+	*/ -->
+	<h2 th:text="#{welcome}">Welcome</h2>
+    <div class="row">
+        <div class="col-md-12">
+          <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+        </div>
+    </div>
 </body>
 </html>

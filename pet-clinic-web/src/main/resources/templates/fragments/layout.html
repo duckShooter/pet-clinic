@@ -1,13 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
+
+<!-- /*
+	- {th:fragment} attribute is used to designate a HTML tag and its content as a fragment (reusable HTML snippet)
+	- fragment names can be parameterized in order to change some specific parts of it. It takes the form name(params)
+	---
+	References:
+	https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#including-template-fragments
+	https://www.baeldung.com/spring-thymeleaf-fragments#parametrized-fragments
+*/ -->
 <html th:fragment="layout (template, menu)">
-
   <head>
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
+    <!-- /*
+    	- {th:href} attribute is used to add a link (i.e. a href attribute), it takes a URL expression as a value
+    	- @{url} is a URL expression
+    		- URL expressions can include parameters and will be automatically encoded (i.e. @{/print(type='pdf'))
+    		- URL expressions can evaluate other expressions within it (i.e. @{view/item(item_id=${item.id}))
+    	---
+    	References:
+    	https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#link-urls
+    */ -->
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}">
 
     <title>PetClinic :: a Spring Framework demonstration</title>
@@ -36,7 +52,15 @@
           </div>
           <div class="navbar-collapse collapse" id="main-navbar">
               <ul class="nav navbar-nav navbar-right">
-  
+				
+	              <!-- /*
+	              	- Preprocessed expressions are any type of expressions surrounded by double underscores (i.e. __${}__, __#{}__ ...)
+	              	- Their execution is done before the normal one that  allows for modification of the expression that will 
+	              	  eventually be executed.
+	              	---
+	              	References:
+	              	https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#preprocessing
+	              */ -->
                   <li th:fragment="menuItem (path,active,title,glyph,text)" class="active" th:class="${active==menu ? 'active' : ''}">
                       <a th:href="@{__${path}__}" th:title="${title}">
                         <span th:class="'glyphicon  glyphicon-'+${glyph}" class="glyphicon glyphicon-home" aria-hidden="true"></span>
@@ -70,7 +94,13 @@
   </nav>
   <div class="container-fluid">
       <div class="container xd-container">
-  
+  		  <!-- /*
+  		  	- {th:block} tag is used as container for attributes, any attributes inlined in it will be executed
+  		  	  and their content will be inserted but the tag itself will disappear
+  		  	---
+  		  	References:
+  		  	https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#synthetic-thblock-tag
+  		  */ -->
           <th:block th:include="${template}"/>
 
         <br/>
