@@ -8,6 +8,7 @@
   <artifactId>pet-clinic-web</artifactId>
   
   <properties>
+  	<!-- Good Practice Tip: keep dependencies version separated as properties for easier update and revision -->
   	<webjars-bootstrap.version>3.3.6</webjars-bootstrap.version>
     <webjars-jquery-ui.version>1.12.1</webjars-jquery-ui.version>
     <webjars-jquery.version>3.3.1-2</webjars-jquery.version>
