@@ -69,6 +69,12 @@
     		<artifactId>jquery-ui</artifactId>
    		 	<version>${webjars-jquery-ui.version}</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>org.webjars</groupId>
+   			 <artifactId>webjars-locator</artifactId>
+    		<version>0.36</version>
+		</dependency>
   </dependencies>
   
   <build>
@@ -87,7 +93,7 @@
         </configuration>
         
         <executions>
-          <execution>
+          <execution> <!-- M2E plugin bug -->
             <phase>generate-resources</phase>
             <goals>
               <goal>run</goal>
