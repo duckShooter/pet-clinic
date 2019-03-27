@@ -6,10 +6,19 @@ import org.springframework.stereotype.Service;
 
 import guru.framework.petclinic.model.Owner;
 import guru.framework.petclinic.services.OwnerService;
+import guru.framework.petclinic.services.PetService;
+import guru.framework.petclinic.services.PetTypeService;
 
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Integer> implements OwnerService {
+	private PetTypeService petTypeService;
+	private PetService petService;
 	
+	public OwnerServiceMap(PetTypeService petTypeService, PetService petService) {
+		this.petTypeService = petTypeService;
+		this.petService = petService;
+	}
+
 	/*We must add the 'public' modifier, because we can't reduce the visibility of the inherited methods
 	  Removing the 'public' modifier will make the methods 'package private' which reduces the visibility to the outer package */
 	@Override
@@ -34,7 +43,21 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Integer> implemen
 	
 	@Override
 	public Owner save(Owner object) {
-		return super.save(object);
+		if(object != null) {
+			if(object.getPets() != null) { //If the owner has pets
+				object.getPets().forEach(pet -> {
+					if(pet.getPetType() != null) //Check if the pets are assigned a type
+						if(pet.getPetType().getId() == null) //Check if the pet type isn't persisted
+							petTypeService.save(pet.getPetType()); //persist it
+					else
+						throw new RuntimeException("Pet type is required");
+					if(pet.getId() == null) //Check if pet is not persisted (based on ID auto-generation on persistence)
+						petService.save(pet);
+				});
+			}
+			return super.save(object);			
+		}
+		return null;
 	}
 	
 	@Override
