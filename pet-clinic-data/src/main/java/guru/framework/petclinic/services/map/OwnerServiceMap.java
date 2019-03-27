@@ -11,8 +11,8 @@ import guru.framework.petclinic.services.PetTypeService;
 
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Integer> implements OwnerService {
-	private PetTypeService petTypeService;
-	private PetService petService;
+	private final PetTypeService petTypeService;
+	private final PetService petService;
 	
 	public OwnerServiceMap(PetTypeService petTypeService, PetService petService) {
 		this.petTypeService = petTypeService;
@@ -44,7 +44,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Integer> implemen
 	@Override
 	public Owner save(Owner object) {
 		if(object != null) {
-			if(object.getPets() != null) { //If the owner has pets
+			if(!object.getPets().isEmpty()) { //If the owner has pets
 				object.getPets().forEach(pet -> {
 					if(pet.getPetType() != null) //Check if the pets are assigned a type
 						if(pet.getPetType().getId() == null) //Check if the pet type isn't persisted
