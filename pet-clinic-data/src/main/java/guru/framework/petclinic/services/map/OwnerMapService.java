@@ -1,5 +1,6 @@
 package guru.framework.petclinic.services.map;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -62,7 +63,11 @@ public class OwnerMapService extends AbstractMapService<Owner, Integer> implemen
 	
 	@Override
 	public Set<Owner> findByLastName(String lastName) {
-		return null;
+		Set<Owner> ownerWithLastName = new HashSet<>();
+		map.values().forEach(owner -> {
+			if(owner.getLastName().equals(lastName))
+				ownerWithLastName.add(owner);
+		});
+		return ownerWithLastName;
 	}
-	
 }

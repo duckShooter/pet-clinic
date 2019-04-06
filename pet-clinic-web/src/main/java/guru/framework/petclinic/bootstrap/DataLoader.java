@@ -10,10 +10,13 @@ import guru.framework.petclinic.model.Pet;
 import guru.framework.petclinic.model.PetType;
 import guru.framework.petclinic.model.Speciality;
 import guru.framework.petclinic.model.Vet;
+import guru.framework.petclinic.model.Visit;
+import guru.framework.petclinic.repositories.VisitRepository;
 import guru.framework.petclinic.services.OwnerService;
 import guru.framework.petclinic.services.PetTypeService;
 import guru.framework.petclinic.services.SpecialityService;
 import guru.framework.petclinic.services.VetService;
+import guru.framework.petclinic.services.VisitService;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -21,13 +24,16 @@ public class DataLoader implements CommandLineRunner {
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
 	private final SpecialityService specialityService;
+	private final VisitService visitService;
 
 	public DataLoader(OwnerService ownerService, VetService vetService,
-			PetTypeService petTypeService, SpecialityService specialityService) {
+			PetTypeService petTypeService, SpecialityService specialityService,
+			VisitService visitService) {
 		this.ownerService = ownerService;
 		this.vetService = vetService;
 		this.petTypeService = petTypeService;
 		this.specialityService = specialityService;
+		this.visitService = visitService;
 	}
 
 	@Override
@@ -85,6 +91,13 @@ public class DataLoader implements CommandLineRunner {
 		jamesPet.setName("Tommy");
 		jamesPet.setOwner(owner2);
 		owner2.getPets().add(jamesPet);
+		
+		Visit visit = new Visit();
+		visit.setDate(LocalDate.now());
+		visit.setDescription("crying kitty");
+		visit.setPet(jamesPet);
+		jamesPet.getVisits().add(visit);
+		visitService.save(visit);
 		
 		System.out.println("Loaded Owners ... ");
 		

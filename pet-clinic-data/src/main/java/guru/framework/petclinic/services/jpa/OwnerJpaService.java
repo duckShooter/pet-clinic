@@ -51,5 +51,4 @@ public class OwnerJpaService implements OwnerService {
 	public Set<Owner> findByLastName(String lastName) {
 		return ownerRepository.findByLastName(lastName);
 	}
-
 }
