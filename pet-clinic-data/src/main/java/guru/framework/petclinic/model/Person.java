@@ -1,5 +1,8 @@
 package guru.framework.petclinic.model;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass //Embeds the properties in each subclass table
 public class Person extends BaseEntity {
 	private String firstName;
 	private String lastName;

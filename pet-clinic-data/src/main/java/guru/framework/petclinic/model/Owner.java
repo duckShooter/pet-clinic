@@ -3,10 +3,17 @@ package guru.framework.petclinic.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Owner extends Person {
 	private String address;
 	private String city;
 	private String phone;
+	
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Pet> pets = new HashSet<Pet>();
 	
 	public String getAddress() {

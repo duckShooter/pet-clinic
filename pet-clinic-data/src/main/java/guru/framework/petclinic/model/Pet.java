@@ -2,9 +2,17 @@ package guru.framework.petclinic.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Pet  extends BaseEntity {
 	private String name;
+	
+	@ManyToOne //Unidirectional
 	private PetType petType;
+	
+	@ManyToOne //Bidirectional
 	private Owner owner;
 	private LocalDate birthDate;
 	
