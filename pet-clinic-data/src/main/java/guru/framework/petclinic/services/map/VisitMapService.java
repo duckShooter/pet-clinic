@@ -2,6 +2,7 @@ package guru.framework.petclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import guru.framework.petclinic.model.Visit;
@@ -9,6 +10,7 @@ import guru.framework.petclinic.services.PetService;
 import guru.framework.petclinic.services.VisitService;
 
 @Service
+@Profile({"default", "map"})
 public class VisitMapService extends AbstractMapService<Visit, Integer> implements VisitService {
 	
 	private final PetService petService;
