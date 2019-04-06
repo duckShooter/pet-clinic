@@ -9,11 +9,11 @@ import guru.framework.petclinic.services.SpecialityService;
 import guru.framework.petclinic.services.VetService;
 
 @Service
-public class VetServiceMap extends AbstractMapService<Vet, Integer> implements VetService {
+public class VetMapService extends AbstractMapService<Vet, Integer> implements VetService {
 	
 	private final SpecialityService specialityService;
 	
-	public VetServiceMap(SpecialityService specialityService) {
+	public VetMapService(SpecialityService specialityService) {
 		this.specialityService = specialityService;
 	}
 	
