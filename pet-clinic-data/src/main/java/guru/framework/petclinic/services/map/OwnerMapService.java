@@ -67,7 +67,7 @@ public class OwnerMapService extends AbstractMapService<Owner, Integer> implemen
 	public Set<Owner> findByLastName(String lastName) {
 		Set<Owner> ownerWithLastName = new HashSet<>();
 		map.values().forEach(owner -> {
-			if(owner.getLastName().equals(lastName))
+			if(owner.getLastName().equalsIgnoreCase(lastName))
 				ownerWithLastName.add(owner);
 		});
 		return ownerWithLastName;
